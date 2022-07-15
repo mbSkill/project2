@@ -38,7 +38,7 @@ CREATE TABLE `device` (
 
 LOCK TABLES `device` WRITE;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
-INSERT INTO `device` VALUES (10,'555-555-0000','Iphone',1),(11,'555-555-0001','Galaxy',1),(12,'555-555-0002','Pixal',2),(13,'555-555-0003','Iphone',3);
+INSERT INTO `device` VALUES (10,'555-555-0000','Iphone',5),(11,'555-555-0001','Galaxy',5),(12,'555-555-0002','Pixal',6),(13,'555-555-0003','Iphone',8);
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 UNLOCK TABLES;
 
