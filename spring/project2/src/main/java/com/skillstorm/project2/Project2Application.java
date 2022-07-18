@@ -30,6 +30,7 @@ public class Project2Application {
 		SpringApplication.run(Project2Application.class, args);
 	}
 
+	/*
 	@Bean
 	CommandLineRunner runner (UserRepository repo){
 		List<Integer> ids = Arrays.asList(4, 5, 9);
@@ -40,4 +41,5 @@ public class Project2Application {
 
 		return (args ->  userPlanRepo.findAll().forEach(System.out::println));
 	}
+	*/
 }
