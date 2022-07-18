@@ -2,11 +2,17 @@ package com.skillstorm.project2.userPlan;
 
 import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.user.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_plan")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserPlan {
 
     @Id

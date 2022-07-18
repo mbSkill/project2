@@ -1,11 +1,17 @@
 package com.skillstorm.project2.device;
 
 import com.skillstorm.project2.user.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "device")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
