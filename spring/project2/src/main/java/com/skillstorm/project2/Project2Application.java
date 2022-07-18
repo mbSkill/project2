@@ -20,6 +20,7 @@ import java.util.List;
 public class Project2Application {
 	@Autowired
 	UserPlanService userPlanService;
+	DeviceRepository deviceRepository;
 
 	@Autowired
 	PlanService planService;
@@ -28,15 +29,15 @@ public class Project2Application {
 		SpringApplication.run(Project2Application.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	CommandLineRunner runner (UserRepository repo){
 		List<Integer> ids = Arrays.asList(4, 5, 9);
 		System.out.println("-------------------plans begin");
-		System.out.println(planService.findPlanById(ids));
 		System.out.println("-------------------plans end");
+		System.out.println(deviceRepository.findAll());
 
 
-		return (args ->  userPlanRepo.findAll().forEach(System.out::println));
+		return (args -> deviceRepository.findAll());
 	}
-	 */
+
 }

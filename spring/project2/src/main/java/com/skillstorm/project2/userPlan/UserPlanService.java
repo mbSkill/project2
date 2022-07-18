@@ -29,10 +29,12 @@ public class UserPlanService {
        User user = userRepo.getReferenceById(8);
        System.out.println(user.getId());
 
-       Device device= deviceRepo.saveAndFlush(Device.builder()
+       Device device= deviceRepo.saveAndFlush(
+
+               Device.builder()
                 .name("Pixal")
                 .number("555-555-0004")
-                .user(user)
+                .user_id(user.getId())
                 .build());
 
         System.out.println(device);
@@ -46,4 +48,8 @@ public class UserPlanService {
         );
     }
 
+
+    public List<UserPlan> findAll() {
+        return userPlanRepo.findAll();
+    }
 }

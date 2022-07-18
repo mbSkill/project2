@@ -1,9 +1,7 @@
 package com.skillstorm.project2.device;
 
 import com.skillstorm.project2.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +10,8 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,44 +20,15 @@ public class Device {
     String number;
     String name;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    int user_id;
 
     @Override
     public String toString() {
-        return "Device{" + "id=" + id + ", number='" + number + '\'' + ", name='" + name + '\'' + ", user=" + user + '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        return "Device{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                ", user_id=" + user_id +
+                '}';
     }
 }
