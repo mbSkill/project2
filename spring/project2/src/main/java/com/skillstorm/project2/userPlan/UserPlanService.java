@@ -1,18 +1,24 @@
 package com.skillstorm.project2.userPlan;
 
+
 import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.device.DeviceRepository;
 import com.skillstorm.project2.user.User;
 import com.skillstorm.project2.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 @Service
 public class UserPlanService {
     @Autowired
+
     UserPlanRepository userPlanRepo;
     @Autowired
     UserRepository userRepo;
