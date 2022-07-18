@@ -33,10 +33,10 @@ public class Project2Controller {
     // Users should be able to sign into their account, and only be able to manage that account
     //User A should not be able to view/ edit user B’s account
 
-    @GetMapping("/userplans/id")
+    @GetMapping("/userplans")
     // Users should be able to see a breakdown of their monthly bill based on their plans
-    public ResponseEntity<List<UserPlan>> getUserPlans(int id) {
+    public ResponseEntity<List<UserPlan>> getUserPlans() {
         System.out.println("GET user plans");
-        return new ResponseEntity<List<UserPlan>>(HttpStatus.OK);
+        return new ResponseEntity<List<UserPlan>>(userPlanService.findAll(), HttpStatus.OK);
     }
 }
