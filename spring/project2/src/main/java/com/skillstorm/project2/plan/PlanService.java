@@ -13,4 +13,6 @@ public class PlanService {
     public List<Plan> findPlanById(List<Integer> ids){
         return repo.findAllById(ids);
     }
+
+    public List<Plan> findAll() { return repo.findAll(); }
 }
