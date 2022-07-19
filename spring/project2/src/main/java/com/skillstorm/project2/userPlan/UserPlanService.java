@@ -3,12 +3,12 @@ package com.skillstorm.project2.userPlan;
 
 import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.device.DeviceRepository;
-import com.skillstorm.project2.user.User;
 import com.skillstorm.project2.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -35,6 +35,13 @@ public class UserPlanService {
                .device_id(device.getId())
                .build()
        );
+    }
+
+    public void updateUserPlan(UserPlan userPlan){
+        Optional<UserPlan> currentUserPlan = userPlanRepo.findById(userPlan.id);
+        if(currentUserPlan.isPresent()) {
+            userPlanRepo.save(userPlan);
+        }
     }
 
 

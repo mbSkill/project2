@@ -27,17 +27,4 @@ public class Project2Application {
 		SpringApplication.run(Project2Application.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner (UserRepository repo){
-		List<Integer> ids = Arrays.asList(4, 5, 9);
-		System.out.println("-------------------plans begin");
-		System.out.println(userPlanService.findAll());
-		System.out.println("-------------------plans end");
-		userPlanService.findAll();
-
-
-
-		return (args -> deviceRepository.findAll());
-	}
-
 }

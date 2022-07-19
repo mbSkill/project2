@@ -13,10 +13,11 @@ public class UserPlanController {
     @Autowired
     UserPlanService userPlanService;
 
+    //Get all UserPlans
     @GetMapping
-    public ResponseEntity<String> getUserPlans(){
+    public ResponseEntity<List<UserPlan>> getUserPlans(){
         List<UserPlan> list = userPlanService.findAll();
-        return  new ResponseEntity<String>(list.toString(), HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //Create new UserPlan
@@ -33,9 +34,17 @@ public class UserPlanController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    //Delete single UserPlan
     @DeleteMapping
     public ResponseEntity<String> deleteUserPlan(@RequestParam int id ){
         userPlanService.deleteById(id);
         return ResponseEntity.accepted().build();
+    }
+
+    //Update single userPlan
+    @PutMapping
+    public ResponseEntity<String> updateUserPlan(@RequestBody UserPlan userPlan){
+        userPlanService.updateUserPlan(userPlan);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 }
