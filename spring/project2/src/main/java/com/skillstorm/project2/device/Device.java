@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 public class Device {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String number;

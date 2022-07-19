@@ -2,9 +2,7 @@ package com.skillstorm.project2.userPlan;
 
 import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,65 +11,38 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class UserPlan {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(insertable = false)
     int id;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;
-
-//    @OneToOne
-//    @JoinColumn(name = "plan_id")
-//    Plan plan;
-
+    @Column
+    int user_id;
+    @Column
     int plan_id;
+    @Column
+    int device_id;
 
     @OneToOne
-    @JoinColumn(name = "device_id")
+    @JoinColumn(name = "device_id", referencedColumnName = "id",
+            updatable = false, insertable = false)
     Device device;
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id",
+            updatable = false, insertable = false)
+    User user;
 
     @Override
     public String toString() {
         return "UserPlan{" +
                 "id=" + id +
-                ",\nuser=" + user +
-                ", \n plan_id=" + plan_id +
-                ", \ndevice=" + device +
-                "}\n";
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public int getPlan_id() {
-        return plan_id;
-    }
-
-    public void setPlan_id(int plan_id) {
-        this.plan_id = plan_id;
-    }
-
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
+                ", user_id=" + user_id +
+                ", plan_id=" + plan_id +
+                ", device_id=" + device_id +
+                ", device=" + device +
+                ", user=" + user +
+                '}';
     }
 }
