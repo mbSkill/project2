@@ -3,36 +3,41 @@ package com.skillstorm.project2.userPlan;
 import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.plan.Plan;
 import com.skillstorm.project2.user.User;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_plan")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class UserPlan {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(insertable = false)
     int id;
 
-    /*
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    User user;*/
+    @Column
     int userId;
 
-    /*
-    @OneToOne
-    @JoinColumn(name = "plan_id")
-    Plan plan;
-*/
-
+    @Column
     int planId;
 
-    /*
-    @OneToOne
-    @JoinColumn(name = "device_id")
-    Device device;*/
+   
+    @Column
     int deviceId;
+    
+    @JoinColumn(name = "device_id", referencedColumnName = "id",
+            updatable = false, insertable = false)
+    Device device;
+    
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id",
+            updatable = false, insertable = false)
+    User user;
 
     @Override
     public String toString() {
