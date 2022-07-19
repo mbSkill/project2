@@ -1,6 +1,5 @@
 package com.skillstorm.project2.device;
 
-import com.skillstorm.project2.user.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,22 +22,8 @@ public class Device {
     @Column(name = "name")
     private String name;
 
-    int user_id;
-
-    public Device() {}
-
-    public Device(String number, String name, User user) {
-        this.number = number;
-        this.name = name;
-        this.user = user;
-    }
-
-    public Device(int id, String number, String name, User user) {
-        this.id = id;
-        this.number = number;
-        this.name = name;
-        this.user = user;
-    }
+    @Column(name = "user_id")
+    int userId;
 
     @Override
     public String toString() {
@@ -46,7 +31,7 @@ public class Device {
                 "id=" + id +
                 ", number='" + number + '\'' +
                 ", name='" + name + '\'' +
-                ", user_id=" + user_id +
+                ", user_id=" + userId +
                 '}';
     }
 }

@@ -26,15 +26,14 @@ public class UserPlanService {
                Device.builder()
                 .name("Pixal")
                 .number("555-555-0004")
-                .user_id(userPlan.getUser_id())
+                .userId(userPlan.getUserId())
                 .build());
 
         return userPlanRepo.saveAndFlush(UserPlan.builder()
-               .user_id(userPlan.getUser_id())
-               .plan_id(userPlan.getPlan_id())
-               .device_id(device.getId())
-               .build()
-       );
+               .userId(userPlan.getUserId())
+               .planId(userPlan.getPlanId())
+               .deviceId(device.getId())
+               .build());
     }
 
     public void updateUserPlan(UserPlan userPlan){
@@ -55,4 +54,6 @@ public class UserPlanService {
         }catch (Exception e)
             {e.printStackTrace();}
     }
+
+    public List<UserPlan> findAllByUserId(Integer userId) { return userPlanRepo.findAllByUserId(userId); }
 }
