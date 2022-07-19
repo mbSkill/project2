@@ -13,4 +13,6 @@ import java.util.function.Function;
 public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findByUsernameAndPassword(String username, String password);
     List<User> findByUsername(String username);
+
+
 }

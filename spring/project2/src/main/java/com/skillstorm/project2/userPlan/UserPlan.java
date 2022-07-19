@@ -20,16 +20,17 @@ public class UserPlan {
     @Column(insertable = false)
     int id;
 
-    @Column
+    @Column(name = "user_id")
     int userId;
 
-    @Column
+    @Column(name = "plan_id")
     int planId;
 
    
-    @Column
+    @Column(name = "device_id")
     int deviceId;
-    
+
+    /*
     @JoinColumn(name = "device_id", referencedColumnName = "id",
             updatable = false, insertable = false)
     Device device;
@@ -38,6 +39,7 @@ public class UserPlan {
     @JoinColumn(name = "user_id", referencedColumnName = "id",
             updatable = false, insertable = false)
     User user;
+    */
 
     @Override
     public String toString() {
