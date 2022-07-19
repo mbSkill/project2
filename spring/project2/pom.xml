@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>project2</name>
 	<description>Group project 2 for skillstorm</description>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
