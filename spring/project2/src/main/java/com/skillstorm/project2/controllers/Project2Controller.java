@@ -47,5 +47,5 @@ public class Project2Controller {
         System.out.println("GET plans");
         return new ResponseEntity<List<Plan>>(planService.findAll(), HttpStatus.OK);
     }
-}
+
 }
