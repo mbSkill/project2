@@ -8,15 +8,33 @@ import javax.persistence.*;
 @Table(name = "device")
 public class Device {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    String number;
-    String name;
+    @Column(name = "number")
+    private String number;
+
+    @Column(name = "name")
+    private String name;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     User user;
+
+    public Device() {}
+
+    public Device(String number, String name, User user) {
+        this.number = number;
+        this.name = name;
+        this.user = user;
+    }
+
+    public Device(int id, String number, String name, User user) {
+        this.id = id;
+        this.number = number;
+        this.name = name;
+        this.user = user;
+    }
 
     @Override
     public String toString() {
