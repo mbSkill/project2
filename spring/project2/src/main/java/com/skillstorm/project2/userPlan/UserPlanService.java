@@ -1,7 +1,6 @@
 package com.skillstorm.project2.userPlan;
 
 
-import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.device.DeviceRepository;
 import com.skillstorm.project2.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +15,14 @@ public class UserPlanService {
     @Autowired
     UserPlanRepository userPlanRepo;
     @Autowired
-    UserRepository userRepo;
-    @Autowired
     DeviceRepository deviceRepo;
 
     public UserPlan addUserPlan(UserPlan userPlan){
-       Device device= deviceRepo.saveAndFlush(
-
-               Device.builder()
-                .name("Pixal")
-                .number("555-555-0004")
-                .userId(userPlan.getUserId())
-                .build());
 
         return userPlanRepo.saveAndFlush(UserPlan.builder()
                .userId(userPlan.getUserId())
                .planId(userPlan.getPlanId())
-               .deviceId(device.getId())
+               .deviceId(userPlan.getDeviceId())
                .build());
     }
 

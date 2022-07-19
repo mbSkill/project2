@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +26,4 @@ public class Device {
     @Column(name = "user_id")
     int userId;
 
-    @Override
-    public String toString() {
-        return "Device{" +
-                "id=" + id +
-                ", number='" + number + '\'' +
-                ", name='" + name + '\'' +
-                ", user_id=" + userId +
-                '}';
-    }
 }
