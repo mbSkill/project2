@@ -18,27 +18,29 @@ public class UserPlan {
     @OneToOne
     @JoinColumn(name = "user_id")
     User user;*/
-    int user_id;
+    int userId;
 
+    /*
     @OneToOne
     @JoinColumn(name = "plan_id")
     Plan plan;
+*/
 
-    // int plan_id;
+    int planId;
 
     /*
     @OneToOne
     @JoinColumn(name = "device_id")
     Device device;*/
-    int device_id;
+    int deviceId;
 
     @Override
     public String toString() {
         return "UserPlan{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", plan=" + plan +
-                ", device_id=" + device_id +
+                ", userId=" + userId +
+                ", planId=" + planId +
+                ", deviceId=" + deviceId +
                 '}';
     }
 
@@ -50,27 +52,27 @@ public class UserPlan {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Plan getPlan() {
-        return plan;
+    public int getPlanId() {
+        return planId;
     }
 
-    public void setPlan(Plan plan) {
-        this.plan = plan;
+    public void setPlanId(int planId) {
+        this.planId = planId;
     }
 
-    public int getDevice_id() {
-        return device_id;
+    public int getDeviceId() {
+        return deviceId;
     }
 
-    public void setDevice_id(int device_id) {
-        this.device_id = device_id;
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
     }
 }

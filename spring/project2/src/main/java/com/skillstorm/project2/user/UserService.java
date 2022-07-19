@@ -13,4 +13,11 @@ public class UserService {
     public List<User> findAll(){
        return repo.findAll();
     }
+
+    public List<User> findByUsername(String username) {
+        return repo.findByUsername(username);
+    }
+    public List<User> findByUsernameAndPassword(String username, String password) {
+        return repo.findByUsernameAndPassword(username, password);
+    }
 }

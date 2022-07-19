@@ -13,4 +13,6 @@ public class UserPlanService {
     public List<UserPlan> findAll(){
         return repo.findAll();
     }
+
+    public List<UserPlan> findAllByUserId(Integer user_id) { return repo.findAllByUserId(user_id); }
 }
