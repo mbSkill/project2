@@ -13,12 +13,9 @@ public class UserPlan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
-/*    @OneToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     User user;
-
- */
-    int user_id;
 
 //    @OneToOne
 //    @JoinColumn(name = "plan_id")
@@ -26,19 +23,17 @@ public class UserPlan {
 
     int plan_id;
 
-    /*
     @OneToOne
     @JoinColumn(name = "device_id")
     Device device;
-*/
-    int device_id;
+
     @Override
     public String toString() {
         return "UserPlan{" +
                 "id=" + id +
-                ",\nuser=" + user_id +
+                ",\nuser=" + user +
                 ", \n plan_id=" + plan_id +
-                ", \ndevice=" + device_id +
+                ", \ndevice=" + device +
                 "}\n";
     }
 
@@ -50,12 +45,12 @@ public class UserPlan {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getPlan_id() {
@@ -66,11 +61,11 @@ public class UserPlan {
         this.plan_id = plan_id;
     }
 
-    public int getDevice_id() {
-        return device_id;
+    public Device getDevice() {
+        return device;
     }
 
-    public void setDevice_id(int device_id) {
-        this.device_id = device_id;
+    public void setDevice(Device device) {
+        this.device = device;
     }
 }
