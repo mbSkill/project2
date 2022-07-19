@@ -45,7 +45,7 @@ public class Project2Controller {
     // Users should be able to see a breakdown of their monthly bill based on their plans
     public ResponseEntity<List<Plan>> getPlans() {
         System.out.println("GET plans");
-        return new ResponseEntity<List<UserPlan>>(planService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Plan>>(planService.findAll(), HttpStatus.OK);
     }
 }
 }
