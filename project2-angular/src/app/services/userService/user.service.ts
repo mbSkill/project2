@@ -13,10 +13,18 @@ export class UserService {
   constructor(private httpClient :HttpClient) { }
 
   users: any;
-
+  rootApi="/users";
 
    getUsers(): Observable<HttpResponse<User>> {
-    return this.httpClient.get<User>("/users", {responseType: 'json', observe: 'response'} );
+    return this.httpClient.get<User>(this.rootApi, {responseType: 'json', observe: 'response'} );
+   }
+
+   getUsersByName( name: string): Observable<HttpResponse<User>> {
+    return this.httpClient.get<User>(this.rootApi + "/?name=" + name, {responseType: 'json', observe: 'response'});
+   }
+
+   printUserByName(name: string){
+    return this.getUsersByName(name).subscribe((response) => {console.log(response.body)});
    }
 
    printUsers() {

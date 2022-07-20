@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import UserPlan from '../models/userPlan';
 import { PlanService } from '../services/planService/plan.service';
+import { UserPlanService } from '../services/userPlanService/user-plan.service';
 import { UserService } from '../services/userService/user.service';
 
 @Component({
@@ -9,10 +11,15 @@ import { UserService } from '../services/userService/user.service';
 })
 export class UserHomepageComponent implements OnInit {
 
-  constructor(private planService: PlanService, private userService: UserService) { }
-
+  constructor(private userPlanService: UserPlanService) { }
+plans: any = [];
   ngOnInit(): void {
-    this.userService.printUsers();
+    this.plans = this.userPlanService.getUserPlansForUser(5)
+    .subscribe((response) => response.body?.entries);
   }
+
+  
+
+
 
 }
