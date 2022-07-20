@@ -1,10 +1,7 @@
 class Plan {
     id: number;
-
     name: string;
-
     price: number;
-
     deviceLimit: number;
 
     constructor(id = 0, name = '', price = 0.0, deviceLimit=0){

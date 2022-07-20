@@ -12,12 +12,17 @@ import { UserService } from '../services/userService/user.service';
 export class UserHomepageComponent implements OnInit {
 
   constructor(private userPlanService: UserPlanService) { }
-plans: any = [];
+  userPlans: Array<UserPlan> = new Array;
+
+
   ngOnInit(): void {
-    this.plans = this.userPlanService.getUserPlansForUser(5)
-    .subscribe((response) => response.body?.entries);
+     this.userPlanService.getUserPlansForUser(8)
+    .subscribe((response) =>  {this.userPlans = response.body || new Array} );
   }
 
+  handle(){
+    console.log(this.userPlans);
+  }
   
 
 

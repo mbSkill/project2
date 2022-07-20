@@ -9,4 +9,12 @@
         <td>asdfsdf</td>
         <td>$69.69</td>
     </table>
+    <button (click)="handle()"></button>
+
+    <ul>
+        <li *ngFor="let u of userPlans">
+            {{ u.plan.name }}
+
+        </li>
+    </ul>
 </div>
