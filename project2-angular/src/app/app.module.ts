@@ -16,7 +16,8 @@ import { UserLoginComponent } from './user-login/user-login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, HttpClientModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
