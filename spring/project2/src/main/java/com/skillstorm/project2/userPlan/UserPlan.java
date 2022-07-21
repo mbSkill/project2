@@ -40,4 +40,9 @@ public class UserPlan {
             updatable = false, insertable = false)
     User user;
 
+    @OneToOne
+    @JoinColumn(name = "plan_id", referencedColumnName = "id",
+            updatable = false, insertable = false)
+    Plan plan;
+
 }
