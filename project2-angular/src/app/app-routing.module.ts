@@ -4,9 +4,15 @@ import { UserHomepageComponent } from './user-homepage/user-homepage.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 
 const routes: Routes = [
+  { 
+    path: '', redirectTo: '/', pathMatch: 'full'
+  },
+
   {
     path: 'login', component: UserLoginComponent
-  }, {
+  },
+
+   {
     path: 'home', component: UserHomepageComponent
   }
 ];
