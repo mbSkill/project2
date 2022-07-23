@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: phone_service
+-- Host: 127.0.0.1    Database: project2
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -40,6 +40,54 @@ LOCK TABLES `device` WRITE;
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
 INSERT INTO `device` VALUES (10,'555-555-0000','Iphone',5),(11,'555-555-0001','Galaxy',5),(12,'555-555-0002','Pixal',6),(13,'555-555-0003','Iphone',8);
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jwtblacklist`
+--
+
+DROP TABLE IF EXISTS `jwtblacklist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `jwtblacklist` (
+  `jwtsignature` varchar(255) NOT NULL,
+  `blacklisted_time` date NOT NULL,
+  PRIMARY KEY (`jwtsignature`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jwtblacklist`
+--
+
+LOCK TABLES `jwtblacklist` WRITE;
+/*!40000 ALTER TABLE `jwtblacklist` DISABLE KEYS */;
+INSERT INTO `jwtblacklist` VALUES ('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJNYXR0IiwiZXhwIjoxNjU4NTgyMzI3fQ.9uuX3GlvsVscCaAh0lzqUheA9U8b6ZEVyny4OuRqJttFf0mfZppI13Ao7JlcTgPrsHzrCtYtEUmQzkjNIyYmYg','2022-07-23'),('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJNYXR0IiwiZXhwIjoxNjU4NTI3MzA2fQ.baJeJu2wulFF7cKLJ2iVrMuTliMYnclJiSZROqyZWtmcKtBADvsV2vhSxrfLS2F6zvRUOTYoV0jTCIjep-brQw','2022-07-22');
+/*!40000 ALTER TABLE `jwtblacklist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `phonenumber`
+--
+
+DROP TABLE IF EXISTS `phonenumber`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `phonenumber` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phonenumber`
+--
+
+LOCK TABLES `phonenumber` WRITE;
+/*!40000 ALTER TABLE `phonenumber` DISABLE KEYS */;
+INSERT INTO `phonenumber` VALUES (1,'555-555-0000'),(2,'555-555-0001'),(3,'555-555-0002'),(4,'555-555-0003'),(5,'555-555-0004');
+/*!40000 ALTER TABLE `phonenumber` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -130,7 +178,7 @@ INSERT INTO `users` VALUES (5,'Yi','pass','forgotPass','2000-01-01','M'),(6,'Cod
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'phone_service'
+-- Dumping routines for database 'project2'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -142,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-15  7:29:39
+-- Dump completed on 2022-07-23  7:37:46
