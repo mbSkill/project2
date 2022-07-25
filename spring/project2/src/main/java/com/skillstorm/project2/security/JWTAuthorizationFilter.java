@@ -2,6 +2,7 @@ package com.skillstorm.project2.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import org.jboss.logging.Logger;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,7 +32,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 
         String header = request.getHeader(HEADER_STRING);
-        LOGGER.info("in JWTAuthorizationFilter" + header);
+        LOGGER.info("in JWTAuthorizationFilter " + header);
 
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
             chain.doFilter(request,response);
@@ -47,18 +48,22 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         String token = request.getHeader(HEADER_STRING);
 
         if (token != null){
-            String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
-                    .build().verify(token.replace(TOKEN_PREFIX, ""))
-                    .getSubject();
+            try {
+                String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
+                        .build().verify(token.replace(TOKEN_PREFIX, ""))
+                        .getSubject();
 
-            LOGGER.info(user);
+                LOGGER.info(user);
 
-            if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                if (user != null) {
+                    return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                }
+
+            }catch (TokenExpiredException e){
+                LOGGER.debugf(e.getMessage());
             }
 
             return null;
-
         }
         return null;
     }

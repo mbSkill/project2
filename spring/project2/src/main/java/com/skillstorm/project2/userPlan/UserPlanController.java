@@ -1,17 +1,21 @@
 package com.skillstorm.project2.userPlan;
 
+import com.skillstorm.project2.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("userplan")
+@RequestMapping("/userplan")
 public class UserPlanController {
     @Autowired
     UserPlanService userPlanService;
+    @Autowired
+    UserService userService;
 
     //Get all UserPlans
     @GetMapping
@@ -22,9 +26,15 @@ public class UserPlanController {
 
     //Create new UserPlan
     @PostMapping
-    public ResponseEntity<String> saveUserPlan(@RequestBody UserPlan userPlan){
-        System.out.println(userPlan);
+    public ResponseEntity<String> saveUserPlan(
+            @CurrentSecurityContext(expression="authentication?.name") String username,
+            @RequestBody UserPlan userPlan){
+        System.out.println(username + ": " + userPlan );
         try{
+            if(userService.findByUsername(username).stream().findFirst().get().getId() != userPlan.userId){
+                return new ResponseEntity<>("You do not have the permissions to do this.", HttpStatus.UNAUTHORIZED);
+            }
+
             UserPlan uP = userPlanService.addUserPlan(userPlan);
             return ResponseEntity.ok(uP.toString());
         } catch (Exception e){

@@ -16,4 +16,8 @@ public class PlanService {
     }
 
     public List<Plan> findAll() { return repo.findAll(); }
+
+//    public Integer getDeviceLimit(int id){
+//        return repo.findById(id).ifPresent(re);
+//    }
 }

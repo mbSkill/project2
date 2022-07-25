@@ -34,6 +34,7 @@ public class UserPlanService {
 
 
     public List<UserPlan> findAll() {
+        isEligibleToAddPlan(new UserPlan());
         return userPlanRepo.findAll();
     }
 
@@ -45,4 +46,10 @@ public class UserPlanService {
     }
 
     public List<UserPlan> findAllByUserId(Integer userId) { return userPlanRepo.findAllByUserId(userId); }
+
+    private boolean isEligibleToAddPlan(UserPlan userPlan){
+        System.out.println(userPlanRepo.countByUserIdAndPlanId(5, 4));
+
+        return 0< userPlanRepo.countByUserIdAndPlanId(5, 4);
+    }
 }
