@@ -22,13 +22,13 @@ public class UserController {
     @Autowired
     DeviceService deviceService;
 
+    //We use the Security Context to get the correct user information. No param passing necessary.
     @GetMapping()
     public ResponseEntity<Map<String,Object>> getUser(@CurrentSecurityContext(expression="authentication?.name")
                             String username){
 
         Optional<User> user = userService.findByUsername(username).stream().findFirst();
         List<Device> devices = deviceService.findAllByUser(user.get().getId());
-        System.out.println(devices);
         Map<String, Object> result = new HashMap<String,Object>();
         result.put("user", user);
         result.put("devices", devices);
@@ -37,7 +37,7 @@ public class UserController {
 
     @PutMapping("/")
     public ResponseEntity<String> setPassword(
-            @CurrentSecurityContext(expression = "authentication?.nam") String username, @RequestBody String password) {
+            @CurrentSecurityContext(expression = "authentication?.name") String username, @RequestBody String password) {
         if(password.length() < 5){
             return new ResponseEntity<>("Password did not meet requirements", HttpStatus.BAD_REQUEST);
         }

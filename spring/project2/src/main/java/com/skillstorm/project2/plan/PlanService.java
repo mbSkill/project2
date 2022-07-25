@@ -14,6 +14,7 @@ public class PlanService {
     public List<Plan> findPlansById(Set<Integer> ids){
         return repo.findAllById(ids);
     }
+    public Plan findOneById(int id){ return repo.findOneById(id);}
 
     public List<Plan> findAll() { return repo.findAll(); }
 
