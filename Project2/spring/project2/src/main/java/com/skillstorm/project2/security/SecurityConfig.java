@@ -50,9 +50,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            .csrf().disable()
+            .csrf().disable().cors().disable()
             .authorizeRequests(authorize -> authorize
                     .antMatchers("/**").authenticated()
+
             )
             .formLogin(withDefaults())
             .logout().addLogoutHandler(LogoutHandlerjwtInvalidate).clearAuthentication(true).deleteCookies("Authorization")

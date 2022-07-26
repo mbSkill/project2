@@ -2,6 +2,7 @@ package com.skillstorm.project2.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.logging.Logger;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import static com.skillstorm.project2.security.SecurityConstants.*;
@@ -35,26 +37,21 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
 
-        try {
+        System.out.println(request.getParameter("username"));
+//            com.skillstorm.project2.user.User user = new ObjectMapper().readValue(request.getReader(),
+//                    com.skillstorm.project2.user.User.class);
+        LOGGER.info("Inside AttemptAuth ");
 
-            com.skillstorm.project2.user.User user = new ObjectMapper().readValue(request.getInputStream(),
-                    com.skillstorm.project2.user.User.class);
-            LOGGER.info("Inside AttemptAuth " + user);
-
-            Authentication authentication = authManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                    user.getUsername(),
-                    user.getPassword(),
+        Authentication authentication = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                    request.getParameter("username"),
+                    request.getParameter("password"),
                     new ArrayList<GrantedAuthority>()));
 
-                    LOGGER.info("in attemptAuthentication for: " + authentication.getName());
+        LOGGER.info("in attemptAuthentication for: " + authentication.getName());
 
         return authentication;
 
-        } catch (IOException e) {
-            LOGGER.info("THROW IOE");
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
@@ -69,6 +66,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.addCookie(new Cookie("Authorization",jwt));
         response.addCookie(new Cookie("userName", authResult.getName()));
+        response.sendRedirect("/welcome");
     }
 
 

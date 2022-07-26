@@ -24,6 +24,9 @@ public class UserDetailServiceImp implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.info(username);
+        if(userService.findByUsername(username).isEmpty()){
+            throw new UsernameNotFoundException(username);
+        }
         com.skillstorm.project2.user.User user =
                  userService.findByUsername(username).get(0);
 
@@ -31,9 +34,7 @@ public class UserDetailServiceImp implements UserDetailsService {
 
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        if(user == null) {
-            throw new UsernameNotFoundException(username);
-        }
+
 
         User u = new User(
                 user.getUsername(),

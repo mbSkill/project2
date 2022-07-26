@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  header = {
+    headers: new HttpHeaders()
+      .set('Authorization',  `Bearer ${localStorage.getItem("Authorization")}`)
+  } 
+
+  login(){
+    this.http.get("/user", this.header)
+    .subscribe(data => console.log(data));
   }
 
 }
