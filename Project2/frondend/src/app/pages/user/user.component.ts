@@ -1,18 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit, inject  } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styles: [
-  ]
+  ],
 })
 export class UserComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
+  token:string="";
+  userData:any = [];
+
+  constructor(private http:HttpClient, private cookieService:CookieService) { }
 
   ngOnInit(): void {
-    this.http.get("/user").subscribe((data) => console.log(data));
+    this.token= this.cookieService.get("Authorization");
+    let header = {
+      headers: new HttpHeaders()
+        .set('Authorization',  `Bearer ${this.token}`)
+    
+      } 
+    this.http.get("/user", header).subscribe((data) => this.userData= data);
   }
 
 }

@@ -1,1 +1,11 @@
-<p>user pages!</p>
+<div>
+    <h3>{{userData?.user | json }}</h3>
+<ul>
+    <li *ngFor="let item of userData?.devices; index as i">
+        {{i+1}}: {{item | json }} 
+    </li>
+</ul>
+
+
+</div>
+
