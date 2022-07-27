@@ -5,8 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styles: [
-  ],
+  styles: [],
 })
 export class UserComponent implements OnInit {
 
@@ -15,8 +14,7 @@ export class UserComponent implements OnInit {
 
   constructor(private http:HttpClient, private cookieService:CookieService) { }
 
-  ngOnInit(): void {
-    this.token= this.cookieService.get("Authorization");
+  ngOnInit(): void {this.token= this.cookieService.get("Authorization");
     let header = {
       headers: new HttpHeaders()
         .set('Authorization',  `Bearer ${this.token}`)

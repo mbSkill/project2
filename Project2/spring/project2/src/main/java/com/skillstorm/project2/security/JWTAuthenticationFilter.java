@@ -66,7 +66,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.addCookie(new Cookie("Authorization",jwt));
         response.addCookie(new Cookie("userName", authResult.getName()));
-        response.sendRedirect("/welcome");
+        response.sendRedirect("/");
     }
 
 
