@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "bootstrap": "^5.2.0",
     "ng-zorro-antd": "^12.1.1",
     "ngx-cookie-service": "^14.0.1",
     "rxjs": "~6.6.0",

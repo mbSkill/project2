@@ -16,6 +16,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
     @Autowired
     UserService userService;
@@ -31,8 +32,17 @@ public class UserController {
         List<Device> devices = deviceService.findAllByUser(user.get().getId());
         Map<String, Object> result = new HashMap<String,Object>();
         result.put("user", user);
-        result.put("devices", devices);
         return new ResponseEntity<>( result, HttpStatus.OK);
+    }
+
+    // get user's device
+    @GetMapping("/device")
+    public ResponseEntity<List<Device>> getUserDevice(@CurrentSecurityContext(expression="authentication?.name")
+                                                              String username){
+
+        Optional<User> user = userService.findByUsername(username).stream().findFirst();
+        List<Device> devices = deviceService.findAllByUser(user.get().getId());
+        return new ResponseEntity<>( devices, HttpStatus.OK);
     }
 
     @PutMapping("/")

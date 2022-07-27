@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JWTBlacklistRepository extends JpaRepository<JWTBlacklist, String> {
 
-
 }
