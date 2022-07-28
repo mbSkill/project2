@@ -1,0 +1,22 @@
+<div class="col-md-6 offset-md-3">
+    <h3> Add Device </h3>
+    <form (ngSubmit) = "onSubmit()">
+        <div class="form-group">
+            <label>name</label>
+            <input type="text" class="form-control" id="name"
+                [(ngModel)]="device.name" name="name"
+            >
+        
+            <label>phone number</label>
+            <input type="text" class="form-control" id="phone"
+            [(ngModel)]="device.number" name="phoneNumber"
+            >
+    
+            <label>user ID</label>
+            <input type="text" class="form-control" id="userid"
+            [(ngModel)]="device.userId" name="userId"
+            >
+        </div>
+        <button class="btn btn-success" type="submit" >Submit</button>
+    </form>
+ </div>
