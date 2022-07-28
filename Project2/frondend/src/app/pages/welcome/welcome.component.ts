@@ -21,11 +21,15 @@ export class WelcomeComponent implements OnInit {
 
     option = {
       title:{
-        text: "2022 - Monthly Payment"
+        text: "2022 - Monthly Payment",
+        textStyle: {
+          fontWeight:"bold",
+          fontSize:"30"
+        }
       },
       xAxis: {
         type: 'category',
-        data: ['Jan', 'Feb', 'Mar','Apr', 'May', 'June', 'July', 'Aug','Sep', 'Oct', 'Nov', 'Dec']
+        data: ['Jan', 'Feb', 'Mar','Apr', 'Ma·y', 'June', 'July', 'Aug','Sep', 'Oct', 'Nov', 'Dec']
       },
       yAxis: {
         type: 'value'
@@ -33,18 +37,18 @@ export class WelcomeComponent implements OnInit {
       series: [
         {
           data: [
-            95,
+            110,
+            110,
             {
               value: 150,
               itemStyle: {
                 color: '#a90000'
               }
             },
+            100,
+            100,
             110,
-            80,
-            70,
-            110,
-            130,
+            95,
             120,
             0,
             0,
