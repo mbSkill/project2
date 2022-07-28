@@ -1,5 +1,6 @@
 package com.skillstorm.project2.userPlan;
 
+import com.skillstorm.project2.bean.CombinedUserPlan;
 import com.skillstorm.project2.bean.PlanAndDeviceNumber;
 import com.skillstorm.project2.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -19,6 +21,28 @@ public class UserPlanController {
     UserService userService;
 
 
+    @GetMapping("/{userid}/{planid}")
+    public ResponseEntity<CombinedUserPlan> getOneUserPlanCombined(
+            @PathVariable("userid") int userid, @PathVariable("planid") int planid){
+
+        CombinedUserPlan combinedUserPlan = userPlanService.getCombinedUserPlan(userid,planid);
+        if(combinedUserPlan.getUsername() == null || combinedUserPlan.getPlan() == null) {
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(combinedUserPlan, HttpStatus.OK);
+    }
+
+    @GetMapping("/{userid}/all")
+    public ResponseEntity<HashMap<Integer, CombinedUserPlan>> getAllUserPlanCombined(
+            @PathVariable("userid") int userid){
+        HashMap<Integer, CombinedUserPlan> combinedUserPlanList = userPlanService.getAllCombinedUserPlan(userid);
+        if(combinedUserPlanList.isEmpty()){
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+        System.out.println("WTFFFF" + combinedUserPlanList);
+        return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
+    }
     //Get UserPlans
     @GetMapping("/{id}")
     public ResponseEntity<List<PlanAndDeviceNumber>> getUserPlansByID(@PathVariable int id){
