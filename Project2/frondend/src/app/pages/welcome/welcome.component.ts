@@ -35,18 +35,17 @@ export class WelcomeComponent implements OnInit {
           data: [
             95,
             {
-              value: 200,
+              value: 150,
               itemStyle: {
                 color: '#a90000'
               }
             },
-            150,
+            110,
             80,
             70,
             110,
             130,
             120,
-            0,
             0,
             0,
             0,
