@@ -1,5 +1,6 @@
 package com.skillstorm.project2.plan;
 
+import com.skillstorm.project2.bean.PlanAndDeviceNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
