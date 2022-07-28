@@ -52,7 +52,7 @@ public class SecurityConfig {
         http
             .csrf().disable().cors().and()
             .authorizeRequests(authorize -> authorize
-                    .antMatchers("/**").authenticated()
+                    .antMatchers("/**").permitAll()
 
             )
             .formLogin(withDefaults())

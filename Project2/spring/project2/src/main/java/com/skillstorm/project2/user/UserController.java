@@ -31,7 +31,18 @@ public class UserController {
         return new ResponseEntity<>( user, HttpStatus.OK);
     }
 
-    // get user's device
+//    @GetMapping()
+//    public ResponseEntity<Map<String,Object>> getUserAndDevices(@CurrentSecurityContext(expression="authentication?.name")
+//                                                      String username){
+//
+//        Optional<User> user = userService.findByUsername(username).stream().findFirst();
+//        List<Device> devices = deviceService.findAllByUser(user.get().getId());
+//        Map<String, Object> result = new HashMap<String,Object>();
+//        result.put("user", user);
+//        devices.stream().forEach(d -> result.put(d.getName(), d.getNumber())); }
+
+
+        // get user's device
     @GetMapping("/device")
     public ResponseEntity<List<Device>> getUserDevice(@CurrentSecurityContext(expression="authentication?.name")
                                                               String username){
