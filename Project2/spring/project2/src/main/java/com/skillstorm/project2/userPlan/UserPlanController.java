@@ -1,5 +1,6 @@
 package com.skillstorm.project2.userPlan;
 
+import com.skillstorm.project2.bean.PlanAndDeviceNumber;
 import com.skillstorm.project2.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +18,23 @@ public class UserPlanController {
     @Autowired
     UserService userService;
 
+
+    //Get UserPlans
+    @GetMapping("/{id}")
+    public ResponseEntity<List<PlanAndDeviceNumber>> getUserPlansByID(@PathVariable int id){
+        List<UserPlan> list = userPlanService.findAllByUserId(id);
+        List<PlanAndDeviceNumber> planAndDeviceNumbers = userPlanService.getPlanandDevices(list);
+        return new ResponseEntity<>(planAndDeviceNumbers, HttpStatus.OK);
+    }
     //Get all UserPlans
-    @GetMapping
+    @GetMapping("/askdjflska")
     public ResponseEntity<List<UserPlan>> getUserPlans(){
         List<UserPlan> list = userPlanService.findAll();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //Create new UserPlan
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<String> saveUserPlan(
             @CurrentSecurityContext(expression="authentication?.name") String username,
             @RequestBody UserPlan userPlan){
@@ -45,14 +54,14 @@ public class UserPlanController {
     }
 
     //Delete single UserPlan
-    @DeleteMapping
+    @DeleteMapping("/")
     public ResponseEntity<String> deleteUserPlan(@RequestParam int id ){
         userPlanService.deleteById(id);
         return ResponseEntity.accepted().build();
     }
 
     //Update single userPlan
-    @PutMapping
+    @PutMapping("/")
     public ResponseEntity<String> updateUserPlan(@RequestBody UserPlan userPlan){
         userPlanService.updateUserPlan(userPlan);
         return new ResponseEntity<>( HttpStatus.OK);

@@ -50,9 +50,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            .csrf().disable().cors().disable()
+            .csrf().disable().cors().and()
             .authorizeRequests(authorize -> authorize
-                    .antMatchers("/**").authenticated()
+                    .antMatchers("/**").permitAll()
 
             )
             .formLogin(withDefaults())

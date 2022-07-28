@@ -15,6 +15,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { AddDeviceComponent } from './pages/add-device/add-device.component';
+import { UpdateDeviceComponent } from './pages/update-device/update-device.component';
 
 registerLocaleData(en);
 
@@ -23,6 +25,8 @@ registerLocaleData(en);
     AppComponent,
     UserComponent,
     LoginComponent,
+    AddDeviceComponent,
+    UpdateDeviceComponent,
   ],
   imports: [
     BrowserModule,
