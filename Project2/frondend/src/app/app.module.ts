@@ -17,6 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AddDeviceComponent } from './pages/add-device/add-device.component';
 import { UpdateDeviceComponent } from './pages/update-device/update-device.component';
+import { PlanListComponent } from './pages/plan-list/plan-list.component';
 
 registerLocaleData(en);
 
@@ -27,6 +28,7 @@ registerLocaleData(en);
     LoginComponent,
     AddDeviceComponent,
     UpdateDeviceComponent,
+    PlanListComponent
   ],
   imports: [
     BrowserModule,
