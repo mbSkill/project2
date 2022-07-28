@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-
 public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +19,4 @@ public class Plan {
     String name;
     float price;
     int deviceLimit;
-
 }

@@ -3,7 +3,9 @@ import { Component, OnInit, inject  } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Device } from 'src/app/class/device';
+import { User } from 'src/app/class/user';
 import { DeviceService } from 'src/app/service/device.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user',
@@ -12,31 +14,27 @@ import { DeviceService } from 'src/app/service/device.service';
 })
 export class UserComponent implements OnInit {
 
-  token:string="";
-  userData:any = [];
-
+  users: User[] =[];
   devices: Device[] = [];
 
   constructor(
-    private http:HttpClient, 
-    private cookieService:CookieService,
+    private userService: UserService,
     private deviceService: DeviceService,
     private router:Router, 
      ) { }
 
   ngOnInit(): void {
-    
-    this.token= this.cookieService.get("Authorization");
-    let header = {
-      headers: new HttpHeaders()
-        .set('Authorization',  `Bearer ${this.token}`)
-    
-      } 
-    this.http.get("/user", header).subscribe((data) => this.userData= data);
+    this.getUser();
     this.getDevices();
   }
 
-  private getDevices() {
+  getUser(){
+    this.userService.getUserList().subscribe(data => {
+      this.users = data;
+    })
+  }
+
+  getDevices() {
     this.deviceService.getDeviceList().subscribe(data =>{
       this.devices=data;
     })

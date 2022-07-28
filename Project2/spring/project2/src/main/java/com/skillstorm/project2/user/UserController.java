@@ -25,14 +25,10 @@ public class UserController {
 
     //We use the Security Context to get the correct user information. No param passing necessary.
     @GetMapping()
-    public ResponseEntity<Map<String,Object>> getUser(@CurrentSecurityContext(expression="authentication?.name")
+    public ResponseEntity<List<User>> getUser(@CurrentSecurityContext(expression="authentication?.name")
                             String username){
-
-        Optional<User> user = userService.findByUsername(username).stream().findFirst();
-        List<Device> devices = deviceService.findAllByUser(user.get().getId());
-        Map<String, Object> result = new HashMap<String,Object>();
-        result.put("user", user);
-        return new ResponseEntity<>( result, HttpStatus.OK);
+        List<User> user = userService.findByUsername(username);
+        return new ResponseEntity<>( user, HttpStatus.OK);
     }
 
 //    @GetMapping()
