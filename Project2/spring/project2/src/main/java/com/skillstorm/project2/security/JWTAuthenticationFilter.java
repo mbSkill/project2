@@ -38,21 +38,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throws AuthenticationException {
 
         System.out.println(request.getParameter("username"));
-        com.skillstorm.project2.user.User user = null;
-        try {
-            user = new ObjectMapper().readValue(request.getReader(),
-                    com.skillstorm.project2.user.User.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//            com.skillstorm.project2.user.User user = new ObjectMapper().readValue(request.getReader(),
+//                    com.skillstorm.project2.user.User.class);
         LOGGER.info("Inside AttemptAuth ");
 
         Authentication authentication = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-//                    request.getParameter("username"),
-//                    request.getParameter("password"),
-                        user.getUsername(),
-                        user.getPassword(),
+                    request.getParameter("username"),
+                    request.getParameter("password"),
                     new ArrayList<GrantedAuthority>()));
 
         LOGGER.info("in attemptAuthentication for: " + authentication.getName());
