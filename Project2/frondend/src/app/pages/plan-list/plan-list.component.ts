@@ -24,6 +24,7 @@ export class PlanListComponent implements OnInit {
   ngOnInit(): void {
     this.getPlans();
     this.getUserPlans();
+    this.totalPrice();
   }
 
   private getPlans() {
@@ -38,4 +39,7 @@ export class PlanListComponent implements OnInit {
     })
   }
 
+  private totalPrice(){
+    console.log(this.plans)
+  }
 }

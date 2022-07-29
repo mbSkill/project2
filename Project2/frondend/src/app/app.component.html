@@ -9,24 +9,24 @@
     <div class="sidebar-logo">
       <a href="#" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Telecom Service</h1>
+        <h1>Eascor Service</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+      <li nz-submenu nzOpen nzTitle="Service Menu" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/welcome">Welcome</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/plan">Plan Info</a>
+            <a routerLink="/plandetail">Plan Detail</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Information" nzIcon="user">
+      <li nz-submenu nzOpen nzTitle="User Menu" nzIcon="user">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/user">Personal Info</a>
+            <a routerLink="/user">Personal Information</a>
           </li>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="adddevice">Add Device&Phone
@@ -34,6 +34,16 @@
           </li>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="updatedevice">Update Device&Phone
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/analysis">Monthly Analysis</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/plan">Purchased Plan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="addplan">Add Plan
             </a>
           </li>
         </ul>

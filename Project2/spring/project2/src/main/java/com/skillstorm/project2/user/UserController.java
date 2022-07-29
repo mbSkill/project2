@@ -2,6 +2,8 @@ package com.skillstorm.project2.user;
 
 import com.skillstorm.project2.device.Device;
 import com.skillstorm.project2.device.DeviceService;
+import com.skillstorm.project2.plan.Plan;
+import com.skillstorm.project2.plan.PlanService;
 import com.skillstorm.project2.security.UserDetailServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,8 @@ public class UserController {
     UserService userService;
     @Autowired
     DeviceService deviceService;
+    @Autowired
+    PlanService planService;
 
     //We use the Security Context to get the correct user information. No param passing necessary.
     @GetMapping()

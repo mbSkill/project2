@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/userplan")
 public class UserPlanController {
@@ -43,6 +44,7 @@ public class UserPlanController {
         System.out.println("WTFFFF" + combinedUserPlanList);
         return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
     }
+
     //Get UserPlans
     @GetMapping("/{id}")
     public ResponseEntity<List<PlanAndDeviceNumber>> getUserPlansByID(@PathVariable int id){

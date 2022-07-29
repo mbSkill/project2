@@ -18,6 +18,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { AddDeviceComponent } from './pages/add-device/add-device.component';
 import { UpdateDeviceComponent } from './pages/update-device/update-device.component';
 import { PlanListComponent } from './pages/plan-list/plan-list.component';
+import { PlandetailComponent } from './pages/plandetail/plandetail.component';
+import { AnalysisComponent } from './pages/analysis/analysis.component';
+import { AddplanComponent } from './pages/addplan/addplan.component';
 
 registerLocaleData(en);
 
@@ -28,7 +31,10 @@ registerLocaleData(en);
     LoginComponent,
     AddDeviceComponent,
     UpdateDeviceComponent,
-    PlanListComponent
+    PlanListComponent,
+    PlandetailComponent,
+    AnalysisComponent,
+    AddplanComponent
   ],
   imports: [
     BrowserModule,

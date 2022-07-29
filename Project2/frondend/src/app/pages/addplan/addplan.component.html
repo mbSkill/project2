@@ -1,20 +1,20 @@
 <div class="col-md-6 offset-md-3">
-    <h3> Update Device&Phone </h3>
+    <h3> Add A New Plan </h3>
     <form (ngSubmit) = "onSubmit()">
         <div class="form-group">
-            <label>name</label>
+            <label>User Id</label>
             <input type="text" class="form-control" id="name"
-                [(ngModel)]="device.name" name="name"
+                [(ngModel)]="addplan.userId" name="userId"
             >
         
-            <label>phone number</label>
+            <label>Device Id</label>
             <input type="text" class="form-control" id="phone"
-            [(ngModel)]="device.number" name="phoneNumber"
+            [(ngModel)]="addplan.deviceId" name="deviceId"
             >
     
-            <label>user ID</label>
+            <label>Plan ID</label>
             <input type="text" class="form-control" id="userid"
-            [(ngModel)]="device.userId" name="userId"
+            [(ngModel)]="addplan.planId" name="planId"
             >
         </div>
         <button class="btn btn-success" type="submit" >Submit</button>
