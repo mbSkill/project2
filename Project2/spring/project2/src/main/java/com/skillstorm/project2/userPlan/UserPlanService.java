@@ -61,6 +61,7 @@ public class UserPlanService {
 
         userPlanList.forEach(userPlan -> planAndDeviceNumbers.add(
                 new PlanAndDeviceNumber(
+                        userPlan.id,
                         userPlan.device.getNumber(),
                         userPlan.plan.getName(),
                         userPlan.plan.getPrice(),
@@ -79,11 +80,16 @@ public class UserPlanService {
     public HashMap<Integer, CombinedUserPlan> getAllCombinedUserPlan(int userid){
         List<UserPlan> plans = userPlanRepo.findDistinctByUserId(userid);
         HashMap<Integer, CombinedUserPlan>  combinedUserPlans= new HashMap<>();
-        plans.forEach(userPlan -> combinedUserPlans.put(userPlan.getPlanId(), CombinedUserPlan.builder()
-                .username(userPlan.user.getUsername())
-                .plan(userPlan.getPlan())
-                .currentPlanCount(userPlanRepo.countByUserIdAndPlanId(userPlan.userId,userPlan.planId))
-                .build()));
+        plans.forEach(userPlan -> {
+            if( userPlan.getPlan() != null && combinedUserPlans.containsValue(userPlan.getPlanId())) {
+                combinedUserPlans.put(userPlan.getPlanId(),
+                        CombinedUserPlan.builder()
+                        .username(userPlan.user.getUsername())
+                        .plan(userPlan.getPlan())
+                        .currentPlanCount(userPlanRepo.countByUserIdAndPlanId(userPlan.userId, userPlan.planId))
+                        .build());
+            }
+        });
         return  combinedUserPlans;
     }
 
