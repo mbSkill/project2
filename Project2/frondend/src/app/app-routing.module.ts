@@ -15,10 +15,10 @@ const routes: Routes = [
   { path: "adddevice", component:AddDeviceComponent},
   { path: "updatedevice/:id", component: UpdateDeviceComponent},
   { path: "updatedevice", component: UpdateDeviceComponent},
-  { path: "plan", component: PlanListComponent},
+  { path: "userplan", component: PlanListComponent},
   { path: "plandetail", component:PlandetailComponent},
   { path: "analysis", component:AnalysisComponent},
-  { path: "addplan", component: AddplanComponent}
+  { path: "addplan", component: AddplanComponent},
 
 ];
 

@@ -30,7 +30,7 @@ export class PlanService {
   }
 
     //create
-    creatAddPlan(addplan:Addplan): Observable<Object>{
+    creatAddPlan(addplan:Addplan, id:number=5): Observable<Object>{
 
       this.token = this.cookieService.get("Authorization");
   
@@ -39,6 +39,7 @@ export class PlanService {
         .set('Authorization',  `Bearer ${this.token}`)
       }
   
-      return this.httpClient.post(`http://localhost:8080/userplan/5`, addplan, header)
+      return this.httpClient.post(`http://localhost:8080/userplan/${id}`, addplan, header)
     }
+
 }

@@ -50,7 +50,7 @@ public class UserPlanService {
 
     public void deleteById(int id) {
         try{
-            deviceRepo.deleteById(id);
+            userPlanRepo.deleteById(id);
         }catch (Exception e)
             {e.printStackTrace();}
     }
@@ -64,6 +64,7 @@ public class UserPlanService {
         userPlanList.stream().forEach(userPlan -> {
             planAndDeviceNumbers.add(
                     new PlanAndDeviceNumber(
+                            userPlan.id,
                             userPlan.device.getNumber(),
                             userPlan.plan.getName(),
                             userPlan.plan.getPrice(),

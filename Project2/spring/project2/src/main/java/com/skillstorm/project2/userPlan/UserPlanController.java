@@ -45,13 +45,14 @@ public class UserPlanController {
         return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
     }
 
-    //Get UserPlans
+    //Get certain - UserPlans
     @GetMapping("/{id}")
     public ResponseEntity<List<PlanAndDeviceNumber>> getUserPlansByID(@PathVariable int id){
         List<UserPlan> list = userPlanService.findAllByUserId(id);
         List<PlanAndDeviceNumber> planAndDeviceNumbers = userPlanService.getPlanandDevices(list);
         return new ResponseEntity<>(planAndDeviceNumbers, HttpStatus.OK);
     }
+
     //Get all UserPlans - two array
     @GetMapping("/twoarray")
     public ResponseEntity<List<UserPlan>> getUserPlans(){
@@ -74,14 +75,13 @@ public class UserPlanController {
             return ResponseEntity.ok(uP.toString());
         } catch (Exception e){
             e.printStackTrace();
-
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     //Delete single UserPlan
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteUserPlan(@RequestParam int id ){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUserPlan(@PathVariable int id ){
         userPlanService.deleteById(id);
         return ResponseEntity.accepted().build();
     }

@@ -27,5 +27,15 @@ export class UserplanService {
     return this.httpClient.get<Userplan[]>(`${this.baseUrl}`,header)
   }
 
-  
+  deleteUserPlan(id: number): Observable<Object>{
+
+    this.token = this.cookieService.get("Authorization");
+
+    let header ={
+      headers: new HttpHeaders()
+      .set('Authorization',  `Bearer ${this.token}`)
+    }
+
+    return this.httpClient.delete(`http://localhost:8080/userplan/delete/${id}`,header);
+  }
 }
