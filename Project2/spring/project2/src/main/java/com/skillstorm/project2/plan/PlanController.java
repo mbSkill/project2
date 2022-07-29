@@ -1,7 +1,4 @@
 package com.skillstorm.project2.plan;
-
-import com.skillstorm.project2.plan.Plan;
-import com.skillstorm.project2.plan.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -2,6 +2,7 @@
 <table class = "table table-striped">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Date of Birth</th>
             <th>Gender</th>
@@ -9,6 +10,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
             <td>{{user.username}}</td>
             <td>{{user.dob}}</td>
             <td>{{user.gender}}</td>
@@ -20,7 +22,7 @@
 <hr/>
 <div></div>
 
-<h3>Device List</h3>
+<h3>Device And Phone</h3>
 
 <table class = "table table-striped">
     <thead>

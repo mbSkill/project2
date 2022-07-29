@@ -1,5 +1,6 @@
 package com.skillstorm.project2.userPlan;
 
+import com.skillstorm.project2.bean.CombinedUserPlan;
 import com.skillstorm.project2.bean.PlanAndDeviceNumber;
 import com.skillstorm.project2.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/userplan")
 public class UserPlanController {
@@ -19,6 +22,28 @@ public class UserPlanController {
     UserService userService;
 
 
+    @GetMapping("/{userid}/{planid}")
+    public ResponseEntity<CombinedUserPlan> getOneUserPlanCombined(
+            @PathVariable("userid") int userid, @PathVariable("planid") int planid){
+
+        CombinedUserPlan combinedUserPlan = userPlanService.getCombinedUserPlan(userid,planid);
+        if(combinedUserPlan.getUsername() == null || combinedUserPlan.getPlan() == null) {
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(combinedUserPlan, HttpStatus.OK);
+    }
+
+    @GetMapping("/{userid}/all")
+    public ResponseEntity<HashMap<Integer, CombinedUserPlan>> getAllUserPlanCombined(
+            @PathVariable("userid") int userid){
+        HashMap<Integer, CombinedUserPlan> combinedUserPlanList = userPlanService.getAllCombinedUserPlan(userid);
+        if(combinedUserPlanList.isEmpty()){
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
+    }
+
     //Get UserPlans
     @GetMapping("/{id}")
     public ResponseEntity<List<PlanAndDeviceNumber>> getUserPlansByID(@PathVariable int id){
@@ -26,15 +51,15 @@ public class UserPlanController {
         List<PlanAndDeviceNumber> planAndDeviceNumbers = userPlanService.getPlanandDevices(list);
         return new ResponseEntity<>(planAndDeviceNumbers, HttpStatus.OK);
     }
-    //Get all UserPlans
-    @GetMapping("/askdjflska")
+    //Get all UserPlans - two array
+    @GetMapping("/twoarray")
     public ResponseEntity<List<UserPlan>> getUserPlans(){
         List<UserPlan> list = userPlanService.findAll();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //Create new UserPlan
-    @PostMapping("/")
+    @PostMapping("/addplan")
     public ResponseEntity<String> saveUserPlan(
             @CurrentSecurityContext(expression="authentication?.name") String username,
             @RequestBody UserPlan userPlan){
@@ -54,8 +79,8 @@ public class UserPlanController {
     }
 
     //Delete single UserPlan
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteUserPlan(@RequestParam int id ){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUserPlan(@PathVariable int id ){
         userPlanService.deleteById(id);
         return ResponseEntity.accepted().build();
     }
