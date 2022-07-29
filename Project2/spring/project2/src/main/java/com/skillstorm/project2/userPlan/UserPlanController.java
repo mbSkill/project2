@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/userplan")
 public class UserPlanController {
@@ -43,6 +44,7 @@ public class UserPlanController {
         System.out.println("WTFFFF" + combinedUserPlanList);
         return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
     }
+
     //Get UserPlans
     @GetMapping("/{id}")
     public ResponseEntity<List<PlanAndDeviceNumber>> getUserPlansByID(@PathVariable int id){
@@ -50,15 +52,15 @@ public class UserPlanController {
         List<PlanAndDeviceNumber> planAndDeviceNumbers = userPlanService.getPlanandDevices(list);
         return new ResponseEntity<>(planAndDeviceNumbers, HttpStatus.OK);
     }
-    //Get all UserPlans
-    @GetMapping("/askdjflska")
+    //Get all UserPlans - two array
+    @GetMapping("/twoarray")
     public ResponseEntity<List<UserPlan>> getUserPlans(){
         List<UserPlan> list = userPlanService.findAll();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //Create new UserPlan
-    @PostMapping("/")
+    @PostMapping("/{id}")
     public ResponseEntity<String> saveUserPlan(
             @CurrentSecurityContext(expression="authentication?.name") String username,
             @RequestBody UserPlan userPlan){
