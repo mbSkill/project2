@@ -41,7 +41,6 @@ public class UserPlanController {
         if(combinedUserPlanList.isEmpty()){
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
         }
-        System.out.println("WTFFFF" + combinedUserPlanList);
         return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
     }
 
@@ -61,7 +60,7 @@ public class UserPlanController {
     }
 
     //Create new UserPlan
-    @PostMapping("/{id}")
+    @PostMapping("/addplan")
     public ResponseEntity<String> saveUserPlan(
             @CurrentSecurityContext(expression="authentication?.name") String username,
             @RequestBody UserPlan userPlan){
