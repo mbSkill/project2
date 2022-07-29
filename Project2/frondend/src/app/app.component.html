@@ -29,7 +29,12 @@
             <a routerLink="/user">Personal Info</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="adddevice">Add Device</a>
+            <a routerLink="adddevice">Add Device&Phone
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="updatedevice">Update Device&Phone
+            </a>
           </li>
         </ul>
       </li>
@@ -45,13 +50,11 @@
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></i>
         </span>
-        <span class="header-login">
-          <i nz-icon nzType="login" nzTheme="outline"></i>
-
-        </span>
         
         <span class="header-logout">
+          <a href="http://localhost:4200/logout">
           <i nz-icon nzType="logout" nzTheme="outline"></i>
+          </a>
         </span>
         
       </div>

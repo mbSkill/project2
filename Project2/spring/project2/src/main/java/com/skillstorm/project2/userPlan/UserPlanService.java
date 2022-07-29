@@ -40,7 +40,6 @@ public class UserPlanService {
         }
     }
 
-
     public List<UserPlan> findAll() {
         System.out.println(isEligibleToAddPlan(new UserPlan()));
         return userPlanRepo.findAll();
@@ -56,7 +55,6 @@ public class UserPlanService {
     public List<UserPlan> findAllByUserId(Integer userId) { return userPlanRepo.findAllByUserId(userId); }
 
     public List<PlanAndDeviceNumber> getPlanandDevices(List<UserPlan> userPlanList){
-
         List<PlanAndDeviceNumber> planAndDeviceNumbers = new ArrayList<>();
         userPlanList.stream().forEach(userPlan -> {
             planAndDeviceNumbers.add(

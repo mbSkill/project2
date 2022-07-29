@@ -14,7 +14,7 @@ export class PlanService {
 
   constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
-  getDeviceList(): Observable<Plan[]>{
+  getPlanList(): Observable<Plan[]>{
 
     this.token = this.cookieService.get("Authorization");
 

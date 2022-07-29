@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'user' , component: UserComponent},
   { path: "adddevice", component:AddDeviceComponent},
   { path: "updatedevice/:id", component: UpdateDeviceComponent},
+  { path: "updatedevice", component: UpdateDeviceComponent},
   { path: "plan", component: PlanListComponent}
 
 ];
