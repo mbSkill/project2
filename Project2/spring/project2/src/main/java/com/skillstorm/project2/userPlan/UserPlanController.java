@@ -41,7 +41,6 @@ public class UserPlanController {
         if(combinedUserPlanList.isEmpty()){
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
         }
-        System.out.println("WTFFFF" + combinedUserPlanList);
         return new ResponseEntity<>(combinedUserPlanList, HttpStatus.OK);
     }
 
@@ -60,7 +59,7 @@ public class UserPlanController {
     }
 
     //Create new UserPlan
-    @PostMapping("/{id}")
+    @PostMapping("/addplan")
     public ResponseEntity<String> saveUserPlan(
             @CurrentSecurityContext(expression="authentication?.name") String username,
             @RequestBody UserPlan userPlan){
@@ -80,8 +79,8 @@ public class UserPlanController {
     }
 
     //Delete single UserPlan
-    @DeleteMapping("/")
-    public ResponseEntity<String> deleteUserPlan(@RequestParam int id ){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUserPlan(@PathVariable int id ){
         userPlanService.deleteById(id);
         return ResponseEntity.accepted().build();
     }

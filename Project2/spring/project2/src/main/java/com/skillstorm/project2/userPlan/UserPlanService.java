@@ -5,7 +5,6 @@ import com.skillstorm.project2.bean.CombinedUserPlan;
 import com.skillstorm.project2.bean.PlanAndDeviceNumber;
 import com.skillstorm.project2.device.DeviceRepository;
 import com.skillstorm.project2.plan.PlanService;
-import com.skillstorm.project2.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,13 +43,12 @@ public class UserPlanService {
     }
 
     public List<UserPlan> findAll() {
-        System.out.println(isEligibleToAddPlan(new UserPlan()));
         return userPlanRepo.findAll();
     }
 
     public void deleteById(int id) {
         try{
-            deviceRepo.deleteById(id);
+            userPlanRepo.deleteById(id);
         }catch (Exception e)
             {e.printStackTrace();}
     }
@@ -61,15 +59,13 @@ public class UserPlanService {
         List<PlanAndDeviceNumber> planAndDeviceNumbers = new ArrayList<>();
 
 
-        userPlanList.stream().forEach(userPlan -> {
-            planAndDeviceNumbers.add(
-                    new PlanAndDeviceNumber(
-                            userPlan.device.getNumber(),
-                            userPlan.plan.getName(),
-                            userPlan.plan.getPrice(),
-                            userPlan.plan.getDeviceLimit()
-                    ));
-        });
+        userPlanList.forEach(userPlan -> planAndDeviceNumbers.add(
+                new PlanAndDeviceNumber(
+                        userPlan.device.getNumber(),
+                        userPlan.plan.getName(),
+                        userPlan.plan.getPrice(),
+                        userPlan.plan.getDeviceLimit()
+                )));
         return planAndDeviceNumbers;
     }
 
@@ -83,13 +79,11 @@ public class UserPlanService {
     public HashMap<Integer, CombinedUserPlan> getAllCombinedUserPlan(int userid){
         List<UserPlan> plans = userPlanRepo.findDistinctByUserId(userid);
         HashMap<Integer, CombinedUserPlan>  combinedUserPlans= new HashMap<>();
-        plans.stream().forEach(userPlan -> {
-            combinedUserPlans.put(userPlan.getPlanId(), CombinedUserPlan.builder()
-                    .username(userPlan.user.getUsername())
-                    .plan(userPlan.getPlan())
-                    .currentPlanCount(userPlanRepo.countByUserIdAndPlanId(userPlan.userId,userPlan.planId))
-                    .build());
-        });
+        plans.forEach(userPlan -> combinedUserPlans.put(userPlan.getPlanId(), CombinedUserPlan.builder()
+                .username(userPlan.user.getUsername())
+                .plan(userPlan.getPlan())
+                .currentPlanCount(userPlanRepo.countByUserIdAndPlanId(userPlan.userId,userPlan.planId))
+                .build()));
         return  combinedUserPlans;
     }
 

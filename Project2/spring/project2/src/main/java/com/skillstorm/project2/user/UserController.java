@@ -52,6 +52,7 @@ public class UserController {
                                                               String username){
 
         Optional<User> user = userService.findByUsername(username).stream().findFirst();
+        if(!user.isPresent()) return new ResponseEntity<>(HttpStatus.TEMPORARY_REDIRECT);
         List<Device> devices = deviceService.findAllByUser(user.get().getId());
         return new ResponseEntity<>( devices, HttpStatus.OK);
     }
