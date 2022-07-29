@@ -6,8 +6,7 @@ import { PlanService } from 'src/app/service/plan.service';
 @Component({
   selector: 'app-addplan',
   templateUrl: './addplan.component.html',
-  styles: [
-  ]
+  styleUrls: ['./addplan.component.less']
 })
 export class AddplanComponent implements OnInit {
 
@@ -27,7 +26,7 @@ export class AddplanComponent implements OnInit {
   }
 
   goToPlanList(){
-    this.router.navigate(['/plan'])
+    this.router.navigate(['/userplan'])
   }
 
   onSubmit(){

@@ -1,5 +1,32 @@
+<div class="plan">
+
+    <div class="plan1">
+        <h3 class="planName">NO.4 UNLIMITED STARTER® PLAN</h3>
+        <h4>$29.99</h4>
+        <p>----------------PER MONTH --------------</p>
+        <p>Device Limit: 3</p>
+    </div>
+
+    <div class="plan2">
+            <h3 class="planName">No.5 UNLIMITED EXTRA® PLAN </h3>
+            <h4>$59.99</h4>
+            <p>----------------PER MONTH --------------</p>
+            <p>Device Limit: 5</p>
+            <p></p>
+    </div>
+
+    <div class="plan3">
+            <h3 class="planName">No.6 UNLIMITED PREMIUM℠ PLAN </h3>
+            <h4>$99.99</h4>
+            <p>----------------PER MONTH --------------</p>
+            <p>Device Limit: 8</p>
+    </div>
+
+</div>
+<div class="middle"></div>
+
 <div class="col-md-6 offset-md-3">
-    <h3> Add A New Plan </h3>
+    <h3> What Plan Do You Pick Today? </h3>
     <form (ngSubmit) = "onSubmit()">
         <div class="form-group">
             <label>User Id</label>
@@ -7,8 +34,7 @@
                 [(ngModel)]="addplan.userId" name="userId"
             >
         
-            <label>Device Id</label>
-            <input type="text" class="form-control" id="phone"
+            <input type="hidden" class="form-control" id="phone"
             [(ngModel)]="addplan.deviceId" name="deviceId"
             >
     

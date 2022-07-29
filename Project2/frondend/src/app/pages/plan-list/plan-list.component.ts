@@ -23,7 +23,7 @@ export class PlanListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlans();
-    this.getUserPlans();
+    //this.getUserPlans();
     this.totalPrice();
   }
 
@@ -33,13 +33,20 @@ export class PlanListComponent implements OnInit {
     })
   }
 
-  private getUserPlans() {
-    this.userplanService.getUserPlanList().subscribe(data =>{
-      this.userplans = data;
-    })
-  }
+  // private getUserPlans() {
+  //   this.userplanService.getUserPlanList().subscribe(data =>{
+  //     this.userplans = data;
+  //   })
+  // }
 
   private totalPrice(){
     console.log(this.plans)
   }
+
+  deleteUserPlan(id:number){
+    this.userplanService.deleteUserPlan(id).subscribe( data => {
+      console.log(data);
+      this.getPlans();
+    })
+  } 
 }

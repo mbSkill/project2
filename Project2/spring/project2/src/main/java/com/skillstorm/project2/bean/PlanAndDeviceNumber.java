@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 
 public class PlanAndDeviceNumber {
+    int userPlanId;
     String phoneNumber;
     String PlanName;
     float price;

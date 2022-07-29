@@ -59,6 +59,17 @@ public class UserPlanService {
         List<PlanAndDeviceNumber> planAndDeviceNumbers = new ArrayList<>();
 
 
+        userPlanList.stream().forEach(userPlan -> {
+            planAndDeviceNumbers.add(
+                    new PlanAndDeviceNumber(
+                            userPlan.id,
+                            userPlan.device.getNumber(),
+                            userPlan.plan.getName(),
+                            userPlan.plan.getPrice(),
+                            userPlan.plan.getDeviceLimit()
+                    ));
+        });
+        
         userPlanList.forEach(userPlan -> planAndDeviceNumbers.add(
                 new PlanAndDeviceNumber(
                         userPlan.device.getNumber(),
@@ -66,6 +77,7 @@ public class UserPlanService {
                         userPlan.plan.getPrice(),
                         userPlan.plan.getDeviceLimit()
                 )));
+                
         return planAndDeviceNumbers;
     }
 
